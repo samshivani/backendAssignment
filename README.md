@@ -1,222 +1,164 @@
-# Covid-19 India
+# Backend Assignment
 
-Given two files `app.js` and a database file `covid19India.db` consisting of two tables `state` and `district`.
+Given two files `app.js` and a database file `amazonaws.db` consisting of a table 'user_table'.
 
-Write APIs to perform CRUD operations on the tables `state`, `district` containing the following columns,
 
-**State Table**
+
+**User Table**
 
 | Columns    | Type    |
 | ---------- | ------- |
-| state_id   | INTEGER |
-| state_name | TEXT    |
-| population | INTEGER |
+| id   | INTEGER |
+| first_name | VARCHAR    |
+| first_name | VARCHAR |
+| company_name | VARCHAR |
+| company_name | VARCHAR |
+| city |VARCHAR |
+| age |VARCHAR |
+| city | VARCHAR|
+| state |VARCHAR |
+| zip |VARCHAR |
+| email | VARCHAR|
+| web |VARCHAR |
+| age |INTEGER |
 
-**District Table**
-
-| Columns       | Type    |
-| ------------- | ------- |
-| district_id   | INTEGER |
-| district_name | TEXT    |
-| state_id      | INTEGER |
-| cases         | INTEGER |
-| cured         | INTEGER |
-| active        | INTEGER |
-| deaths        | INTEGER |
 
 ### API 1
 
-#### Path: `/states/`
+#### Path: `/users/`
 
 #### Method: `GET`
 
 #### Description:
 
-Returns a list of all states in the state table
+Returns a list of all users in the user table
 
 #### Response
 
 ```
 [
   {
-    stateId: 1,
-    stateName: "Andaman and Nicobar Islands",
-    population: 380581
+    "id": 1,
+    "first_name": "James",
+    "last_name": "Butt",
+    "company_name": "Benton, John B Jr",
+    "city": "New Orleans",
+    "state": "LA",
+    "zip": 70116,
+    "email": "jbutt@gmail.com",
+    "web": "http://www.bentonjohnbjr.com",
+    "age": 70
   },
-
-  ...
+  {
+    "id": 2,
+    "first_name": "Josephine",
+    "last_name": "Darakjy",
+    "company_name": "Chanay, Jeffrey A Esq",
+    "city": "Brighton",
+    "state": "MI",
+    "zip": 48116,
+    "email": "josephine_darakjy@darakjy.org",
+    "web": "http://www.chanayjeffreyaesq.com",
+    "age": 48
+  }
 ]
 ```
 
 ### API 2
 
-#### Path: `/states/:stateId/`
+#### Path: `/user/:userId/`
 
 #### Method: `GET`
 
 #### Description:
 
-Returns a state based on the state ID
+Returns a user based on the user ID
 
 #### Response
 
 ```
 {
-  stateId: 8,
-  stateName: "Delhi",
-  population: 16787941
+  "id": 1,
+  "first_name": "James",
+  "last_name": "Butt",
+  "company_name": "Benton, John B Jr",
+  "city": "New Orleans",
+  "state": "LA",
+  "zip": 70116,
+  "email": "jbutt@gmail.com",
+  "web": "http://www.bentonjohnbjr.com",
+  "age": 70
 }
 ```
 
 ### API 3
 
-#### Path: `/districts/`
+#### Path: `/users/`
 
 #### Method: `POST`
 
 #### Description:
 
-Create a district in the district table, `district_id` is auto-incremented
+Create a user in the user table
 
 #### Request
 
 ```
 {
-  "districtName": "Bagalkot",
-  "stateId": 3,
-  "cases": 2323,
-  "cured": 2000,
-  "active": 315,
-  "deaths": 8
+  "id": 2,
+  "first_name": "Josephine",
+  "last_name": "Darakjy",
+  "company_name": "Chanay, Jeffrey A Esq",
+  "city": "Brighton",
+  "state": "MI",
+  "zip": 48116,
+  "email": "josephine_darakjy@darakjy.org",
+  "web": "http://www.chanayjeffreyaesq.com",
+  "age": 48
 }
 ```
 
 #### Response
 
 ```
-District Successfully Added
+{}
 ```
+
+
 
 ### API 4
 
-#### Path: `/districts/:districtId/`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns a district based on the district ID
-
-#### Response
-
-```
-{
-  districtId: 322,
-  districtName: "Haveri",
-  stateId: 36,
-  cases: 2816,
-  cured: 2424,
-  active: 172,
-  deaths: 220,
-}
-```
-
-### API 5
-
-#### Path: `/districts/:districtId/`
+#### Path: `/user/:userId/`
 
 #### Method: `DELETE`
 
 #### Description:
 
-Deletes a district from the district table based on the district ID
+Deletes a user from the user table based on the user ID
 
 #### Response
 
 ```
-District Removed
+{}
 
 ```
 
-### API 6
+### API 5
 
-#### Path: `/districts/:districtId/`
+#### Path: `/user/:userId/`
 
 #### Method: `PUT`
 
 #### Description:
 
-Updates the details of a specific district based on the district ID
+Updates the details of a specific user based on the user ID
 
-#### Request
-
-```
-{
-  "districtName": "Nadia",
-  "stateId": 3,
-  "cases": 9628,
-  "cured": 6524,
-  "active": 3000,
-  "deaths": 104
-}
-```
 
 #### Response
 
 ```
 
-District Details Updated
+{}
 
 ```
 
-### API 7
-
-#### Path: `/states/:stateId/stats/`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns the statistics of total cases, cured, active, deaths of a specific state based on state ID
-
-#### Response
-
-```
-{
-  totalCases: 724355,
-  totalCured: 615324,
-  totalActive: 99254,
-  totalDeaths: 9777
-}
-
-```
-
-### API 8
-
-#### Path: `/districts/:districtId/details/`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns an object containing the state name of a district based on the district ID
-
-#### Response
-
-```
-
-{
-  stateName: "Maharashtra"
-}
-
-```
-
-<br/>
-
-Use `npm install` to install the packages.
-
-**Export the express instance using the default export syntax.**
-
-**Use Common JS module syntax.**
-# backendAssignment
-# backendAssignment
